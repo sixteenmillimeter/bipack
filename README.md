@@ -1,10 +1,12 @@
 # bipack
 
-Script for simulating traveling mattes with ffmpeg. 
+Script for simulating traveling mattes with ffmpeg. Achieve the effect of bipacked film with high contrast masks with a simple bash script.
+
+[Read more about traveling mattes.](https://en.wikipedia.org/wiki/Matte_(filmmaking)#Bi-pack_process)
 
 ## Requirements
 
-Uses `ffmpeg` to generate matte files, apply mattes as alpha masks and render final video.
+Uses `ffmpeg` to generate matte layers, apply mattes as alpha masks and render the final video.
 
 Installation instructions for ffmpeg here: https://github.com/adaptlearning/adapt_authoring/wiki/Installing-FFmpeg
 
@@ -15,3 +17,9 @@ Installation instructions for ffmpeg here: https://github.com/adaptlearning/adap
 This command will take video `A.mp4` and `B.mp4` as image sources while using `matte.mp4` as a high contrast matte which seperates the two image sources.
 
 ![bipack examples](img/example.jpg?raw=true "Examples")
+
+## Explaination
+
+This script started as a multi-command experiment that finally got reduced to a single command that leans heavily on ffmpeg's `maskmerge` filter: [Documentation](https://ffmpeg.org/ffmpeg-filters.html#maskedmerge)
+
+Uses 1280x720 resolution and Apple ProRes 422 HQ as the output format, right now but change that easily in the script. Check it out!
