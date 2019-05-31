@@ -14,7 +14,7 @@ Installation instructions for ffmpeg here: https://github.com/adaptlearning/adap
 
 `sh bipack.sh A.mp4 B.mp4 matte.mp4 output.mov`
 
-This command will take video `A.mp4` and `B.mp4` as image sources while using `matte.mp4` as a high contrast matte which seperates the two image sources.
+This command will take video `A.mp4` and `B.mp4` as image sources while using `matte.mp4` as a high contrast matte which seperates the two image sources. Any video passed in as the matte layer will be converted to greyscale and have the contrast maxed out, so you should treat your matte layer before putting it into this script.
 
 ![bipack examples](img/example.jpg?raw=true "Examples")
 
