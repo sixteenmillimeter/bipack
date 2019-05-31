@@ -10,6 +10,8 @@ W=1280
 H=720
 RATE=24
 
+echo "Running bipack on image sources ${A} and ${B} with ${MATTE} as the matte layer..."
+
 time ffmpeg -y -i $A -i $B -i $MATTE \
 	-filter_complex "
 		color=0x000000:size=${W}x${H}, format=rgb24[bla];
