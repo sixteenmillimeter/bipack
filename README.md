@@ -22,4 +22,6 @@ This command will take video `A.mp4` and `B.mp4` as image sources while using `m
 
 This script started as a multi-command experiment that finally got reduced to a single command that leans heavily on ffmpeg's `maskmerge` filter: [Documentation](https://ffmpeg.org/ffmpeg-filters.html#maskedmerge)
 
-Uses 1280x720 resolution and Apple ProRes 422 HQ as the output format, right now but change that easily in the script. Check it out!
+Uses 1280x720 resolution and Apple ProRes 422 HQ as the output format, right now but change that easily in the script. 
+
+Videos at different framerates will cause "slippage" between the mattes and the images, so it's best to standardize those before running this script. The default rate is set to 24fps because it's been the lowest common denominator of the videos this was written for, but you should use a consistent framerate with all videos passed into this script.

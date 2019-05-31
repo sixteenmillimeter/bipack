@@ -1,29 +1,29 @@
 #!/bin/bash
 
-#IMAGE1
 A=${1}
-#IMAGE2
 B=${2}
-#MATTE
 MATTE=${3}
-#OUTPUT FILE
 OUTPUT_FILE=${4}
 
 CONTRAST=100
-SIZE="1280x720"
-RATE=30
+W=1280
+H=720
+RATE=24
 
 time ffmpeg -y -i $A -i $B -i $MATTE \
 	-filter_complex "
-		color=0x000000:size=$SIZE, format=rgb24[bla];
-		[0] format=rgb24 [a];
-		[1] format=rgb24 [b];
-		[2] format=gray, smartblur=1, eq=contrast=$CONTRAST, format=rgb24 [maska];
-		[2] format=gray, smartblur=1, eq=contrast=$CONTRAST, negate, format=rgb24 [maskb];
+		color=0x000000:size=${W}x${H}, format=rgb24[bla];
+		[0] fps=${RATE},scale=${W}:${H}:force_original_aspect_ratio=decrease,format=rgb24 [a];
+		[1] fps=${RATE},scale=${W}:${H}:force_original_aspect_ratio=decrease,format=rgb24 [b];
+		[2] fps=${RATE},scale=${W}:${H}:force_original_aspect_ratio=decrease,format=gray, 
+			smartblur=1, eq=contrast=$CONTRAST, format=rgb24 [maska];
+		[2] fps=${RATE},scale=${W}:${H}:force_original_aspect_ratio=decrease,format=gray, 
+			smartblur=1, eq=contrast=$CONTRAST, negate, format=rgb24 [maskb];
 		[bla][a][maska] maskedmerge, format=rgb24 [pass1];
 		[pass1][b][maskb] maskedmerge, format=rgb24
 	" \
 	-r $RATE \
 	-c:v prores_ks \
+	-shortest \
 	-profile:v 3 \
 	$OUTPUT_FILE
