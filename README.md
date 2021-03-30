@@ -18,7 +18,7 @@ This command will take video `A.mp4` and `B.mp4` as image sources while using `m
 
 ![bipack examples](img/example.jpg?raw=true "Examples")
 
-## Explaination
+## Explanation
 
 This script started as a multi-command experiment that finally got reduced to a single command that leans heavily on ffmpeg's `maskmerge` filter: [Documentation](https://ffmpeg.org/ffmpeg-filters.html#maskedmerge)
 
